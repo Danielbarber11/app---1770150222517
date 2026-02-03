@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>אייבן - עוזר אישי</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+                "react": "https://esm.sh/react@^19.0.0",
+                "react/": "https://esm.sh/react@^19.0.0/",
+                "react-dom/": "https://esm.sh/react-dom@^19.0.0/"
+            }
+        }
+    </script>
+<link rel="stylesheet" href="/index.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=0">
+    <style>
+      :root { --safe-top: env(safe-area-inset-top); --safe-bottom: env(safe-area-inset-bottom); }
+      html, body { margin: 0 !important; padding: 0 !important; width: 100vw !important; min-height: 100% !important; overflow-x: hidden !important; -webkit-tap-highlight-color: transparent; display: block !important; }
+      * { max-width: 100% !important; box-sizing: border-box !important; }
+      body { padding-top: var(--safe-top) !important; padding-bottom: var(--safe-bottom) !important; }
+    </style>
+    <script>
+      window.onerror = function(msg, url, line) {
+        document.body.innerHTML = '<div style="padding:20px; color:red; font-family:sans-serif; text-align:center;">' +
+          '<h2>שגיאה בהרצת התצוגה המקדימה</h2>' +
+          '<p>' + msg + '</p>' +
+          '<p style="font-size:12px; opacity:0.7;">שגיאה זו נפוצה בפרויקטים של Node.js שדורשים בנייה (Build). האפליקציה הסופית תיבנה כראוי ב-GitHub.</p>' +
+          '</div>';
+      };
+    </script>
+  </head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
