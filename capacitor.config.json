@@ -1,0 +1,6 @@
+{
+  "appId": "com.appcraft.",
+  "appName": "אייבן - עוזר אישי",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
