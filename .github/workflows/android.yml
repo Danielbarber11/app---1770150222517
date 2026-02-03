@@ -1,0 +1,36 @@
+
+name: Build Android
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: 18 }
+      - name: Build Web App
+        run: |
+          # Try to install root or web_files dependencies
+          if [ -f "web_files/package.json" ]; then cd web_files && npm install && (npm run build || true) && cd ..;
+          elif [ -f "package.json" ]; then npm install && (npm run build || true); fi
+          
+          mkdir -p dist
+          # Look for build output or static files
+          if [ -d "web_files/dist" ]; then cp -r web_files/dist/* dist/;
+          elif [ -d "web_files/build" ]; then cp -r web_files/build/* dist/;
+          elif [ -d "dist" ] && [ "$(ls -A dist)" ]; then echo "Build done";
+          elif [ -d "web_files/public" ]; then cp -r web_files/public/* dist/;
+          else 
+            cp -r web_files/* dist/ || true
+            cp index.html dist/ || true
+          fi
+      - run: |
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npx cap add android && npx cap sync
+      - run: |
+          cd android && chmod +x gradlew && ./gradlew assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk ../app-debug.apk
+      - uses: softprops/action-gh-release@v1
+        with: { tag_name: v1.0, files: app-debug.apk }
+        env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
